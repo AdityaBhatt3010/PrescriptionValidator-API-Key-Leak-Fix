@@ -42,7 +42,7 @@ MedChain/
 
 ### Prerequisites
 
-![Node.js](https://img.shields.io/badge/Node.js-v14.0.0+-green?style=flat&logo=nodeio/badge/npm-v6.0.0+-red?style.shields.io/badge/MetaMask-Browser%20Extension-orange?style=flat**:
+Node.js
 ```bash
 git clone 
 cd MedChain
@@ -401,4 +401,5 @@ For support and questions:
 - **Community**: [Discord Server](https://discord.gg/your-server)
 
 ***
+
 
