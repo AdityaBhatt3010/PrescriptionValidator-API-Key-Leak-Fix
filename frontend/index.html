@@ -1,17 +1,202 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Prescription Validation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedChain - Blockchain Prescription Validation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Prescription Validation</h1>
-    <input type="file" id="fileInput">
-    <button onclick="uploadPrescription()">Upload Prescription</button>
-    <button onclick="checkPrescription()">Verify Prescription</button>
-    <p id="verifyResult"></p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>MedChain</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#upload" class="nav-link">Upload</a>
+                <a href="#verify" class="nav-link">Verify</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
-    <script src="app.js"></script>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    Secure Medical Prescriptions with 
+                    <span class="gradient-text">Blockchain</span>
+                </h1>
+                <p class="hero-description">
+                    Revolutionary prescription validation system using blockchain technology. 
+                    Ensure authenticity, prevent fraud, and maintain medical record integrity.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('upload')">
+                        <i class="fas fa-upload"></i>
+                        Upload Prescription
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('verify')">
+                        <i class="fas fa-search"></i>
+                        Verify Document
+                    </button>
+                </div>
+                <div id="connectionStatus" class="connection-status">
+                    <span class="status disconnected">🔴 Not Connected</span>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="blockchain-animation">
+                    <div class="block" style="--delay: 0s"></div>
+                    <div class="block" style="--delay: 0.5s"></div>
+                    <div class="block" style="--delay: 1s"></div>
+                    <div class="block" style="--delay: 1.5s"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Upload Prescription</h2>
+                <p>Store your prescription securely on the blockchain</p>
+            </div>
+            
+            <div class="upload-card">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <h3>Drag & Drop your file here</h3>
+                        <p>or click to browse</p>
+                        <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" hidden>
+                        <label for="fileInput" class="file-label">Choose File</label>
+                    </div>
+                </div>
+                
+                <div class="file-info" id="fileInfo" style="display: none;">
+                    <div class="file-details">
+                        <i class="fas fa-file-medical"></i>
+                        <div>
+                            <span class="file-name" id="fileName"></span>
+                            <span class="file-size" id="fileSize"></span>
+                        </div>
+                    </div>
+                    <button class="btn btn-remove" id="removeFile">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <button class="btn btn-primary btn-full" id="uploadBtn">
+                    <i class="fas fa-shield-alt"></i>
+                    Store on Blockchain
+                </button>
+                
+                <div id="uploadResult" class="result-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Verify Section -->
+    <section id="verify" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Verify Prescription</h2>
+                <p>Check if a prescription exists on the blockchain</p>
+            </div>
+            
+            <div class="verify-card">
+                <div class="upload-area" id="verifyUploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-search upload-icon"></i>
+                        <h3>Drag & Drop your file here</h3>
+                        <p>or click to browse</p>
+                        <input type="file" id="verifyFileInput" accept=".pdf,.jpg,.jpeg,.png" hidden>
+                        <label for="verifyFileInput" class="file-label">Choose File</label>
+                    </div>
+                </div>
+                
+                <div id="verifyFileInfo" class="file-info" style="display: none;"></div>
+                
+                <button class="btn btn-secondary btn-full" id="verifyBtn">
+                    <i class="fas fa-search"></i>
+                    Verify Prescription
+                </button>
+                
+                <div id="verifyResult" class="result-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Why MedChain?</h2>
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div>
+                                <h3>Immutable Security</h3>
+                                <p>Once stored on blockchain, prescriptions cannot be tampered with or forged.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-lightning-bolt"></i>
+                            </div>
+                            <div>
+                                <h3>Instant Verification</h3>
+                                <p>Verify prescription authenticity in seconds with our blockchain technology.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div>
+                                <h3>Global Access</h3>
+                                <p>Access and verify prescriptions from anywhere in the world.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>MedChain</span>
+                </div>
+                <p>&copy; 2025 MedChain. Securing healthcare with blockchain technology.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed: Multiple CDN fallbacks for Ethers.js -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js" 
+            onerror="this.onerror=null; this.src='https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js'"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
