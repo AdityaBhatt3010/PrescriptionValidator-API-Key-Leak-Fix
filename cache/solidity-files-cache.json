@@ -1,0 +1,40 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/jabirimteyaz/Desktop/BlockchainPres/contracts/PrescriptionValidation.sol": {
+      "lastModificationDate": 1754911543112,
+      "contentHash": "48003bb10902b18d449dee88e548de68",
+      "sourceName": "contracts/PrescriptionValidation.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "PrescriptionValidation"
+      ]
+    }
+  }
+}
