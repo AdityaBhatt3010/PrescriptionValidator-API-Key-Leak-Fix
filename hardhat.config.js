@@ -1,7 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
 
-const ALCHEMY_URL = process.env.ALCHEMY_URL;
+const ALCHEMY_URL = "https://eth-sepolia.g.alchemy.com/v2/ffkZa-uXE8b89z3snYfDz";
 const { PRIVATE_KEY } = process.env;
 
 module.exports = {
